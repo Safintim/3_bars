@@ -30,10 +30,10 @@ def main():
     try:
         longitude = float(input('Введите долготу: '))
         latitude = float(input('Введите широту: '))
+        print(f'Ближайший бар: {get_closest_bar(bars, longitude, latitude)}')
     except ValueError:
         print('Координаты состоят только из чисел')
         exit()
-    print(f'Ближайший бар: {get_closest_bar(bars, longitude, latitude)}')
 
 
 if __name__ == '__main__':
