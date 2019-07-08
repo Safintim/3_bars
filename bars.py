@@ -24,13 +24,13 @@ def get_closest_bar(bars, longitude, latitude):
 
 def main():
     bars = load_data('bars.json')
-    print(f'Самый большой бар: {get_biggest_bar(bars)}')
-    print(f'Самый маленький бар: {get_smallest_bar(bars)}')
+    print('Самый большой бар: {}'.format(get_biggest_bar(bars)))
+    print('Самый маленький бар: {}'.format(get_smallest_bar(bars)))
 
     try:
         longitude = float(input('Введите долготу: '))
         latitude = float(input('Введите широту: '))
-        print(f'Ближайший бар: {get_closest_bar(bars, longitude, latitude)}')
+        print('Ближайший бар: {}'.format(get_closest_bar(bars, longitude, latitude)))
     except ValueError:
         print('Координаты состоят только из чисел')
         exit()
