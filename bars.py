@@ -32,8 +32,7 @@ def main():
         closest_bar = get_closest_bar(bars, longitude, latitude)
         print('Ближайший бар: {}'.format(closest_bar['properties']['Attributes']['Name']))
     except ValueError:
-        print('Координаты состоят только из чисел')
-        exit()
+        exit('Координаты состоят только из чисел')
 
 
 if __name__ == '__main__':
