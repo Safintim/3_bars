@@ -1,4 +1,11 @@
 import json
+import argparse
+
+
+def create_parser():
+    parser = argparse.ArgumentParser(prefix_chars='-+/')
+    parser.add_argument('file', nargs='?', default=False, help='Path to json file')
+    return parser
 
 
 def load_data(filepath):
@@ -25,7 +32,12 @@ def get_closest_bar(bars, longitude, latitude):
 
 
 def main():
-    bars = load_data('bars.json')['features']
+    parser = create_parser()
+    namespace = parser.parse_args()
+    if not namespace.file:
+        exit('Укажите путь к файлу')
+
+    bars = load_data(namespace.file)['features']
     biggest_bar = get_biggest_bar(bars)
     smallest_bar = get_smallest_bar(bars)
     print('Самый большой бар: {}'.format(biggest_bar['properties']['Attributes']['Name']))
