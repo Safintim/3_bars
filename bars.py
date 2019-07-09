@@ -14,9 +14,14 @@ def get_smallest_bar(bars):
     return min(bars, key=lambda bar: bar['properties']['Attributes']['SeatsCount'])
 
 
+def calculate_diff_two_coord(bar, longitude, latitude):
+    bar_longitude = bar['geometry']['coordinates'][0]
+    bar_latitude = bar['geometry']['coordinates'][1]
+    return abs(bar_longitude - longitude), abs(bar_latitude - latitude)
+
+
 def get_closest_bar(bars, longitude, latitude):
-    return min(bars, key=lambda bar: (abs(bar['geometry']['coordinates'][0]-longitude),
-                                      abs(bar['geometry']['coordinates'][1]-latitude)))
+    return min(bars, key=lambda bar: calculate_diff_two_coord(bar, longitude, latitude))
 
 
 def main():
