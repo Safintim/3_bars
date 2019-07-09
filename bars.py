@@ -7,30 +7,30 @@ def load_data(filepath):
 
 
 def get_biggest_bar(bars):
-    biggest_bar = max(bars, key=lambda bar: bar['properties']['Attributes']['SeatsCount'])
-    return biggest_bar['properties']['Attributes']['Name']
+    return max(bars, key=lambda bar: bar['properties']['Attributes']['SeatsCount'])
 
 
 def get_smallest_bar(bars):
-    smallest_bar = min(bars, key=lambda bar: bar['properties']['Attributes']['SeatsCount'])
-    return smallest_bar['properties']['Attributes']['Name']
+    return min(bars, key=lambda bar: bar['properties']['Attributes']['SeatsCount'])
 
 
 def get_closest_bar(bars, longitude, latitude):
-    nearest_bar = min(bars, key=lambda bar: (abs(bar['geometry']['coordinates'][0]-longitude),
-                                             abs(bar['geometry']['coordinates'][1]-latitude)))
-    return nearest_bar['properties']['Attributes']['Name']
+    return min(bars, key=lambda bar: (abs(bar['geometry']['coordinates'][0]-longitude),
+                                      abs(bar['geometry']['coordinates'][1]-latitude)))
 
 
 def main():
     bars = load_data('bars.json')['features']
-    print('Самый большой бар: {}'.format(get_biggest_bar(bars)))
-    print('Самый маленький бар: {}'.format(get_smallest_bar(bars)))
+    biggest_bar = get_biggest_bar(bars)
+    smallest_bar = get_smallest_bar(bars)
+    print('Самый большой бар: {}'.format(biggest_bar['properties']['Attributes']['Name']))
+    print('Самый маленький бар: {}'.format(smallest_bar['properties']['Attributes']['Name']))
 
     try:
         longitude = float(input('Введите долготу: '))
         latitude = float(input('Введите широту: '))
-        print('Ближайший бар: {}'.format(get_closest_bar(bars, longitude, latitude)))
+        closest_bar = get_closest_bar(bars, longitude, latitude)
+        print('Ближайший бар: {}'.format(closest_bar['properties']['Attributes']['Name']))
     except ValueError:
         print('Координаты состоят только из чисел')
         exit()
