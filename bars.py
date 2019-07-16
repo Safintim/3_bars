@@ -18,12 +18,16 @@ def load_data(filepath):
         return json.load(file)
 
 
+def get_bar_size(bar):
+    return bar['properties']['Attributes']['SeatsCount']
+
+
 def get_biggest_bar(bars):
-    return max(bars, key=lambda bar: bar['properties']['Attributes']['SeatsCount'])
+    return max(bars, key=get_bar_size)
 
 
 def get_smallest_bar(bars):
-    return min(bars, key=lambda bar: bar['properties']['Attributes']['SeatsCount'])
+    return min(bars, key=get_bar_size)
 
 
 def calc_diff_coords(bar, longitude, latitude):
