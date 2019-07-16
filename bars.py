@@ -4,8 +4,12 @@ import argparse
 
 def create_parser():
     parser = argparse.ArgumentParser(prefix_chars='-+/')
-    parser.add_argument('file', nargs='?', default=False, help='Path to json file')
+    parser.add_argument('file', nargs='?', default=False, type=is_json, help='Path to json file')
     return parser
+
+
+def is_json(file):
+    return file.lower().endswith('.json')
 
 
 def load_data(filepath):
@@ -35,7 +39,7 @@ def main():
     parser = create_parser()
     namespace = parser.parse_args()
     if not namespace.file:
-        exit('Укажите путь к файлу')
+        exit('Укажите путь к файлу. Формат файла должен быть json')
 
     bars = load_data(namespace.file)['features']
     biggest_bar = get_biggest_bar(bars)
