@@ -4,13 +4,14 @@ import argparse
 
 def create_parser():
     parser = argparse.ArgumentParser(prefix_chars='-+/')
-    parser.add_argument('file', nargs='?', default=False, type=is_json, help='Path to json file')
+    parser.add_argument('file', type=is_json, help='Path to json file')
     return parser
 
 
 def is_json(filepath):
     if filepath.lower().endswith('.json'):
         return filepath
+    raise argparse.ArgumentTypeError('not valid extension')
 
 
 def load_data(filepath):

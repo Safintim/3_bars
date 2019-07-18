@@ -62,10 +62,9 @@ python3 bars.py <path_to_json>
 
 ```sh
 python3 bars.py
-Укажите путь к файлу
+usage: bars.py [-h] file
+bars.py: error: the following arguments are required: file
 ```
-
-Если не указать файл, то увидите сообщение "Укажите путь к файлу"
 
 ```sh
 python3 bars.py bars.json
